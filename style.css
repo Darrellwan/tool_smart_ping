@@ -1,54 +1,53 @@
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 
-  th.head {
-    text-align: end;
-    padding-right: 1rem;
-  }
-
-  span.view-value{
-    padding: 1rem;
-  }
-
-  td.view{
-    text-align: end;
-  }
-
-  body {
+body {
     font-family: 'Arial', sans-serif;
     background-color: #394867;
     color: #ffffff;
     margin: 0;
     padding: 20px;
-  }
-  .container {
+}
+.container {
     max-width: 600px;
     margin: auto;
     background: #4E5D73;
     padding: 20px;
     border-radius: 10px;
-  }
-  h1 {
+}
+h1 {
     text-align: center;
     color: #E6E6E6;
-  }
-  .input-group {
+}
+.input-group {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-  }
-  .input-field {
+}
+.input-field {
     flex: 1;
     padding: 10px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     color: #333;
-  }
-  .btn {
+    box-sizing: border-box;
+}
+.input-square {
+    background: #FFF;
+    border: 1px solid #999;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.input-square:last-child {
+    margin-right: 0;
+}
+.input-square input {
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    outline: none;
+}
+.btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: #3d4a61;
@@ -58,30 +57,36 @@
     border-radius: 5px;
     cursor: pointer;
     transition: transform 0.3s ease;
-  }
-  .btn:hover {
+}
+.btn:hover {
     transform: translateY(-2px);
-  }
-  .clear-btn {
+}
+.clear-btn {
     background-color: #7A8BA8;
     margin-top: 10px;
-  }
-  table {
+}
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-  }
-  table, th, td {
+}
+table, th, td {
     border: 1px solid #DDE1E9;
-  }
-  th, td {
-    text-align: left;
+}
+th, td {
     padding: 8px;
-  }
-  tr:nth-child(even) {
+}
+tr:nth-child(even) {
     background-color: #5F6E86;
-  }
-  .delete-record-btn {
+}
+th.head, 
+td.view {
+    text-align: end;
+}
+th.head {
+    padding-right: 1rem;
+}
+.delete-record-btn {
     background-color: #C44D58;
     color: white;
     padding: 8px 15px;
@@ -91,45 +96,21 @@
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 100%;
-  }
-
-  .delete-record-btn:hover {
+}
+.delete-record-btn:hover {
     background-color: #D35D6E;
     transform: translateY(-1px);
-  }
-
-  .delete-record-btn:focus {
+}
+.delete-record-btn:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(196, 77, 88, 0.2);
-  }
-
-  .input-field {
-    box-sizing: border-box;
-  }
-  .input-square {
-    background: #FFF;
-    border: 1px solid #999;
-    padding: 10px;
-    border-radius: 10px;
-    margin-right: 10px;
-  }
-  .input-square:last-child {
-    margin-right: 0;
-  }
-  .input-square input {
-    border: none;
-    width: 100%;
-    font-size: 1em;
-  }
-  .input-square input:focus {
-    outline: none;
-  }
-  .popup {
+}
+.popup {
     display: none;
     position: fixed;
     right: 20px;
     top: 20px;
-    background-color: #354f52; /* 莫蘭迪深藍色 */
+    background-color: #354f52;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -139,13 +120,33 @@
     visibility: hidden;
     transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
-
 .popup.show {
     display: block;
     opacity: 1;
     visibility: visible;
 }
-
-
-
-
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.name-col { width: 35%; }
+.age-col { width: 30%; }
+.occupation-col { width: 30%; }
+.action-col { width: 5%; }
+@media (max-width: 768px) {
+    .view-value {
+        padding: 0;
+        padding-right: 0.5rem;
+    }
+    td.view {
+        padding: 0;
+    }
+    th.head {
+        padding-right: 0.5rem;
+    }
+    .name-col { width: 40%; }
+    .age-col { width: 25%; }
+    .occupation-col { width: 25%; }
+    .action-col { width: 10%; }
+}

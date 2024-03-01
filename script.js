@@ -79,12 +79,12 @@ function renderHistory() {
     row.innerHTML = `
         <td class="view">
             <span class="view-value">
-            ${record.length || record.width ? `${record.length || "  -  "} x ${record.width || "  -  "} cm` : ""}
+            ${record.length || record.width ? `${record.length || "  -  "} x ${record.width || "  -  "}` : ""}
             </span>
         </td>
-        <td class="view"><span class="view-value">${record.area.toFixed(2)} ㎡ </span></td>
-        <td class="view"><span class="view-value">${record.ping.toFixed(2)} 坪 </span></td>
-        <td class="view"><button class="delete-record-btn" onclick="deleteRecord(this)">X</button></td>
+        <td class="view"><span class="view-value">${record.area.toFixed(2)}</span></td>
+        <td class="view"><span class="view-value">${record.ping.toFixed(2)}</span></td>
+        <td class="js-control"><button class="delete-record-btn" onclick="deleteRecord(this)">X</button></td>
     `;
     row.setAttribute("data-id", record.randomId);
   });
