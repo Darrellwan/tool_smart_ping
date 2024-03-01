@@ -47,6 +47,9 @@ function calculatePing(e) {
   if (area > 0) {
     ping = area / 3.3058;
     addRecord(length, width, area, ping);
+    areaInput.value = "";
+    lengthInput.value = "";
+    widthInput.value = "";
   }
 }
 
@@ -72,11 +75,14 @@ function renderHistory() {
   history.forEach((record) => {
     const row = historyTableBody.insertRow();
     row.innerHTML = `
-        <td>${record.length || "-"} cm</td>
-        <td>${record.width || "-"} cm</td>
-        <td>${record.area.toFixed(2)} ㎡</td>
-        <td>${record.ping.toFixed(2)} 坪</td>
-        <td><button class="delete-record-btn" onclick="deleteRecord(this)">X</button></td>
+        <td class="view">
+            <span class="view-value">
+            ${record.length || record.width ? `${record.length || "  -  "} x ${record.width || "  -  "} cm` : ""}
+            </span>
+        </td>
+        <td class="view"><span class="view-value">${record.area.toFixed(2)} ㎡ </span></td>
+        <td class="view"><span class="view-value">${record.ping.toFixed(2)} 坪 </span></td>
+        <td class="view"><button class="delete-record-btn" onclick="deleteRecord(this)">X</button></td>
     `;
     row.setAttribute("data-id", record.randomId);
   });
@@ -91,7 +97,6 @@ function clearHistory() {
 function deleteRecord(btn) {
   let row = btn.parentNode.parentNode;
   let rowId = row.getAttribute("data-id");
-  console.log({ rowId: rowId });
   let dataArray = JSON.parse(localStorage.getItem("history"));
   let objectIndex = dataArray.findIndex((obj) => obj.randomId === rowId);
   if (objectIndex !== -1) {

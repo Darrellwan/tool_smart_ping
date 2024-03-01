@@ -4,6 +4,19 @@
     margin: 0;
   }
 
+  th.head {
+    text-align: end;
+    padding-right: 1rem;
+  }
+
+  span.view-value{
+    padding: 1rem;
+  }
+
+  td.view{
+    text-align: end;
+  }
+
   body {
     font-family: 'Arial', sans-serif;
     background-color: #394867;
