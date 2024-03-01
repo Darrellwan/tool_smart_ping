@@ -8,6 +8,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://www.darrelltw.com/smart_ping_asset/smart_ping_apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://www.darrelltw.com/smart_ping_asset/smart_ping_favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.darrelltw.com/smart_ping_asset/smart_ping_favicon-16x16.png">
+<link rel="stylesheet" type="text/css" href="./style.css">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.darrelltw.com/smart_ping.html">
 <meta property="og:title" content="SmartPing 平方公尺換算坪數">
@@ -18,122 +19,6 @@
 <meta property="twitter:title" content="SmartPing 平方公尺換算坪數">
 <meta property="twitter:description" content="提供平方公尺轉坪數的線上換算工具，可記憶換算十組資料，方便您快速計算房屋、土地等面積。可儲存您常用的換算資料，下次使用更加便利。平方公尺轉換坪數、平方公尺計算坪數等等">
 <meta property="twitter:image" content="https://www.darrelltw.com/smart_ping_icon.jpg">
-
-<style>
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #394867;
-    color: #ffffff;
-    margin: 0;
-    padding: 20px;
-  }
-  .container {
-    max-width: 600px;
-    margin: auto;
-    background: #4E5D73;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  h1 {
-    text-align: center;
-    color: #E6E6E6;
-  }
-  .input-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  .input-field {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-  }
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #3d4a61;
-    color: white;
-    text-align: center;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-  .clear-btn {
-    background-color: #7A8BA8;
-    margin-top: 10px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  table, th, td {
-    border: 1px solid #DDE1E9;
-  }
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
-  tr:nth-child(even) {
-    background-color: #5F6E86;
-  }
-  .delete-record-btn {
-    background-color: #C44D58;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
-  }
-
-    .delete-record-btn:hover {
-        background-color: #D35D6E;
-        transform: translateY(-1px);
-    }
-
-    .delete-record-btn:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(196, 77, 88, 0.2);
-    }
-
-  .input-field {
-    box-sizing: border-box;
-  }
-  .input-square {
-    background: #FFF;
-    border: 1px solid #999;
-    padding: 10px;
-    border-radius: 10px;
-    margin-right: 10px;
-  }
-  .input-square:last-child {
-    margin-right: 0;
-  }
-  .input-square input {
-    border: none;
-    width: 100%;
-    font-size: 1em;
-  }
-  .input-square input:focus {
-    outline: none;
-  }
-</style>
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
@@ -170,8 +55,8 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K9D3DG55');</script>
-    <!-- End Google Tag Manager -->
+})(window,document,'script','dataLayer','GTM-K9D3DG55');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
 <div class="container">
@@ -211,110 +96,6 @@
     <tbody id="historyBody"></tbody>
   </table>
 </div>
-
-<script>
-        const lengthInput = document.getElementById("length");
-        const widthInput = document.getElementById("width");
-        const areaInput = document.getElementById("area");
-        const historyTableBody = document.getElementById("historyBody");
-        const clearHistoryButton = document.getElementById("clearHistory");
-
-        function trackDt(event, additionalData){
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({event: event, ...additionalData})
-        }
-
-        function generateId() {
-            const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-            let id = "";
-            for (let i = 0; i < 16; i++) {
-                id += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return id;
-        }
-
-        function calculatePing(e) {
-          let length = parseFloat(lengthInput.value);
-          let width = parseFloat(widthInput.value);
-          let area = parseFloat(areaInput.value);
-          if (e.target.getAttribute("id") == "length" || e.target.getAttribute("id") == "width") {
-            if (!length || !width) {
-              return false;
-            }
-            let m_length = length / 100;
-            let m_width = width / 100;
-  
-            if (m_length > 0 && m_width > 0) {
-              area = m_length * m_width;
-              areaInput.value = area.toFixed(2);
-            }
-          } else if (e.target.getAttribute("id") == "area") {
-              lengthInput.value = '';
-              widthInput.value = '';
-              length = '';
-              width = '';
-          }
-          let ping;
-  
-          if (area > 0) {
-            ping = area / 3.3058;
-            addRecord(length, width, area, ping);
-          }
-        }
-  
-        function addRecord(length, width, area, ping) {
-          const randomId = generateId();
-          const record = { length, width, area, ping, randomId };
-          let history = JSON.parse(localStorage.getItem("history")) || [];
-          history.unshift(record);
-          history = history.slice(0, 10);
-          localStorage.setItem("history", JSON.stringify(history));
-          trackDt("calculate_ping", {ping: ping, length: length, area: area, randomId: randomId})
-          renderHistory();
-        }
-  
-        function renderHistory() {
-            let history = JSON.parse(localStorage.getItem("history")) || [];
-            historyTableBody.innerHTML = "";
-            history.forEach((record) => {
-            const row = historyTableBody.insertRow();
-            row.innerHTML = `
-                <td>${record.length || "-"} cm</td>
-                <td>${record.width || "-"} cm</td>
-                <td>${record.area.toFixed(2)} ㎡</td>
-                <td>${record.ping.toFixed(2)} 坪</td>
-                <td><button class="delete-record-btn" onclick="deleteRecord(this)">X</button></td>
-            `;
-            row.setAttribute("data-id", record.randomId);
-          });
-        }
-  
-        function clearHistory() {
-            localStorage.removeItem("history");
-            history = [];
-            renderHistory();
-        }
-
-        function deleteRecord(btn) {
-            let row = btn.parentNode.parentNode;
-            let rowId = row.getAttribute("data-id");
-            console.log({rowId: rowId});
-            let dataArray = JSON.parse(localStorage.getItem('history'));
-            let objectIndex = dataArray.findIndex(obj => obj.randomId === rowId);
-            if (objectIndex !== -1) {
-                dataArray.splice(objectIndex, 1);
-                localStorage.setItem('history', JSON.stringify(dataArray));
-            }
-            trackDt("delete_record", {randomId: rowId})
-            row.parentNode.removeChild(row);
-        }
-  
-        lengthInput.addEventListener("change", calculatePing);
-        widthInput.addEventListener("change", calculatePing);
-        areaInput.addEventListener("change", calculatePing);
-        clearHistoryButton.addEventListener("click", clearHistory);
-  
-        renderHistory();
-</script>
+<script src="./script.js"></script>
 </body>
 </html>
