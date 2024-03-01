@@ -66,7 +66,9 @@ function addRecord(length, width, area, ping) {
     area: area,
     randomId: randomId,
   });
+  showPopup();
   renderHistory();
+
 }
 
 function renderHistory() {
@@ -106,6 +108,15 @@ function deleteRecord(btn) {
   trackDt("delete_record", { randomId: rowId });
   row.parentNode.removeChild(row);
 }
+
+function showPopup() {
+    const popup = document.getElementById('popup');
+    popup.classList.add('show');
+    setTimeout(function() {
+        popup.classList.remove('show');
+    }, 3000);
+}
+
 
 lengthInput.addEventListener("change", calculatePing);
 widthInput.addEventListener("change", calculatePing);
